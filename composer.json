@@ -11,7 +11,9 @@
   },
   "require": {
     "nikic/fast-route": "^1.3",
-    "webonyx/graphql-php": "^15.2",
+    "webonyx/graphql-php": "^15.2"
+  },
+  "scripts": {
     "dev": "php -S localhost:8080 -t public",
     "db:migrate": "php bin/doctrine migrations:migrate",
     "drop": "php bin/doctrine orm:schema-tool:drop --force",
