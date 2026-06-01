@@ -1,9 +1,14 @@
 <?php
 
+use App\Controller\GraphQL;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . "/cors.php";
 
+
+
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
+    require_once __DIR__ . '/../bootstrap.php';
 
     $r->get('/db-check', function () {
 
@@ -25,7 +30,9 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
         }
     });
 
-    $r->post('/graphql', [App\Controller\GraphQL::class, 'handle']);
+    $r->post('/graphql', function () use ($schema) {
+        return GraphQL::handle($schema);
+    });
 });
 
 $routeInfo = $dispatcher->dispatch(
