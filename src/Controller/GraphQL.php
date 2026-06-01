@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Graphql\InputTypes\CreateOrderInputType;
-use App\Graphql\ObjectTypes\CategoryType;
-use App\Graphql\ObjectTypes\MessageType;
-use App\Graphql\ObjectTypes\ProductType;
+use App\Graphql\Types\CategoryType;
+use App\Graphql\Types\MessageType;
+use App\Graphql\Types\ProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -151,8 +151,8 @@ class GraphQL
             $query = $input['query'];
             $variableValues = $input['variables'] ?? null;
 
-            $rootValue = ['prefix' => 'You said: '];
-            $result = GraphQLBase::executeQuery($schema, $query, $rootValue, null, $variableValues);
+
+            $result = GraphQLBase::executeQuery($schema, $query, null, null, $variableValues);
             $output = $result->toArray();
         } catch (Throwable $e) {
             $output = [

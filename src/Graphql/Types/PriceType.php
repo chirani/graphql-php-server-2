@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Graphql\ObjectTypes;
+namespace App\Graphql\Types;
 
 use App\Entity\Price;
 use GraphQL\Type\Definition\ObjectType;
