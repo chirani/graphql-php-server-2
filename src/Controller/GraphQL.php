@@ -97,6 +97,7 @@ class GraphQL
                             $name = $orderData['name'] ?? null;
                             $address = $orderData['address'] ?? null;
                             $currencyId = $orderData['currencyId'] ?? null;
+                            $total = $orderData['total'] ?? null;
 
                             // --- Validation ---
                             if (!$cartItems || !is_array($cartItems) || count($cartItems) === 0) {
@@ -114,8 +115,11 @@ class GraphQL
                             if (!$currencyId) {
                                 throw new UserError('Currency ID is required.', 400);
                             }
+                            if (!$total) {
+                                throw new UserError('Total is required.', 400);
+                            }
 
-                            $orderRepo->createOrder($cartItems, $name, $email, $address, $currencyId);
+                            $orderRepo->createOrder($cartItems, $name, $email, $address, $currencyId, $total);
 
                             return [
                                 'message' => 'Order made',

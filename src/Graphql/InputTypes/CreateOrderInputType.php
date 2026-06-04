@@ -17,6 +17,7 @@ class CreateOrderInputType extends InputObjectType
                     'name' => Type::nonNull(Type::string()),
                     'currencyId' => Type::nonNull(Type::string()),
                     'address' => Type::nonNull(Type::string()),
+                    'total' => Type::nonNull(Type::float()),
                     'message' => Type::string(),
                     'items' => Type::listOf(new OrderItemInputType()),
                 ];
