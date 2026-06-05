@@ -34,5 +34,6 @@ $connection = DriverManager::getConnection([
 // obtaining the entity manager
 
 $entityManager = new EntityManager($connection, $config);
+// build the graphql Schema
 
 $schema = GraphQL::buildSchema($entityManager);
