@@ -22,6 +22,7 @@
   "scripts": {
     "dev": "php -S localhost:8080 -t public",
     "db:migrate": "php bin/doctrine migrations:migrate",
+    "db:generate": "php bin/doctrine migrations:generate",
     "drop": "php bin/doctrine orm:schema-tool:drop --force",
     "push": "php bin/doctrine orm:schema-tool:create"
   }
