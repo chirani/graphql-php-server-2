@@ -16,15 +16,6 @@ class Order
     #[ORM\Column(type: "integer")]
     private int $id;
 
-    #[ORM\Column(type: 'string')]
-    private string $name;
-
-    #[ORM\Column(type: 'string')]
-    private string $email;
-
-    #[ORM\Column(type: 'string')]
-    private string $address;
-
     #[ORM\Column(type: 'float')]
     private float $total;
 
@@ -38,11 +29,8 @@ class Order
     #[ORM\JoinColumn(name: "currency_id", referencedColumnName: "id", columnDefinition: "VARCHAR(255)")]
     private Currency $currency;
 
-    public function __construct(string $name, string $email, string $address, float $total)
+    public function __construct(float $total)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->address = $address;
         $this->total = $total;
         $this->createdAt = new \DateTime();
         $this->items = new ArrayCollection();

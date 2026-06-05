@@ -93,24 +93,12 @@ class GraphQL
                             $orderData = $args['input'];
 
                             $cartItems = $orderData['items'] ?? null;
-                            $email = $orderData['email'] ?? null;
-                            $name = $orderData['name'] ?? null;
-                            $address = $orderData['address'] ?? null;
                             $currencyId = $orderData['currencyId'] ?? null;
                             $total = $orderData['total'] ?? null;
 
                             // --- Validation ---
                             if (!$cartItems || !is_array($cartItems) || count($cartItems) === 0) {
                                 throw new UserError('Cart items are required and cannot be empty.', 400);
-                            }
-                            if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                                throw new UserError('Invalid email address.', 400);
-                            }
-                            if (!$name) {
-                                throw new UserError('Name is required.', 400);
-                            }
-                            if (!$address) {
-                                throw new UserError('Address is required.', 400);
                             }
                             if (!$currencyId) {
                                 throw new UserError('Currency ID is required.', 400);
@@ -119,7 +107,7 @@ class GraphQL
                                 throw new UserError('Total is required.', 400);
                             }
 
-                            $orderRepo->createOrder($cartItems, $name, $email, $address, $currencyId, $total);
+                            $orderRepo->createOrder($cartItems, $currencyId, $total);
 
                             return [
                                 'message' => 'Order made',

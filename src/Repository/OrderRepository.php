@@ -17,11 +17,11 @@ class OrderRepository extends ServiceEntityRepository
 {
     public function __construct(private EntityManagerInterface $em) {}
 
-    public function createOrder(array $cartItems, string $name, string $email, string $address, string $currencyId, float $total): Order
+    public function createOrder(array $cartItems, string $currencyId, float $total): Order
     {
         $em = $this->em;
 
-        $order = new Order($name, $email, $address, $total);
+        $order = new Order($total);
         $currency = $em->getRepository(Currency::class)->find($currencyId);
         $order->setCurrency($currency);
 
