@@ -6,6 +6,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . "/cors.php";
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
+    $r->get('/ping', function () {
+        echo "pong";
+    });
+
     $r->get('/db-check', function () {
         $username = $_ENV['MYSQL_USER'];
         $password = $_ENV['MYSQL_PASSWORD'];
